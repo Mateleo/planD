@@ -7,7 +7,7 @@
     >
       <div class="flex m-auto">
         <router-link to="/" class="aspect-square w-[50px]"
-          ><img src="../assets/NECLOGO.png" class="" alt=""
+          ><img src="" class="" alt=""
         /></router-link>
         <router-link
           to="/"
