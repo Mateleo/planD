@@ -22,13 +22,13 @@
         <router-link to="/contact" class="md:mx-2 mx-1 link-underline"
           >CONTACT</router-link
         >
-        <router-link to="/account" class="md:ml-2 ml-1 link-underline"
+        <router-link to="/mypanel" class="md:ml-2 ml-1 link-underline"
           >ACCOUNT</router-link
         >
       </nav>
     </div>
   </div>
-  <div class="md:h-[50px] h-[90px]"></div>
+  <div class="md:h-[70px] h-[90px]"></div>
 </template>
 <style>
 .link-underline {

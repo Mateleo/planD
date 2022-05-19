@@ -73,7 +73,7 @@ app.use(passport.session());
 app.use(compression());
 
 // require("./routes/card.routes")(app);
-// require("./routes/user.routes")(app);
+require("./routes/user.routes")(app);
 require("./routes/auth.routes")(app);
 
 // parse requests of content-type - app/json
@@ -81,6 +81,8 @@ require("./routes/auth.routes")(app);
 
 // parse requests of content-type - app/x-www-form-urlencoded
 // app.use(express.urlencoded({ extended: false }))
+
+
 
 //docker test trigger
 

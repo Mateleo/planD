@@ -3,7 +3,7 @@ module.exports = function (app) {
   app.get(
     "/api/auth/google",
     passport.authenticate("google", {
-      scope: ["email", "profile"],
+      scope: ["openid", "email", "profile"],
     })
   );
   app.get(
@@ -11,7 +11,11 @@ module.exports = function (app) {
     passport.authenticate("google", { failureRedirect: "/failed" }),
     function (req, res) {
       // Successful authentication, redirect home.
-      res.redirect("/success");
+      if (process.env.NODE_ENV == "production") {
+        res.redirect("https://notenoughcards.netlify.app/mypanel");
+      } else {
+        res.redirect("http://localhost:3000/mypanel");
+      }
     }
   );
   app.get("/api/auth/", (req, res) => {
