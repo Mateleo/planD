@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, type RouteLocationNormalized } from "vu
 import Home from "../components/Home.vue";
 import Login from "../components/Login.vue";
 import Account from "../components/Account.vue";
+import Create from "../components/Create.vue";
 import { useStore } from "@/stores/store";
 import { useToast } from "vue-toastification";
 import axios from "axios";
@@ -16,6 +17,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: Create,
   },
   {
     path: "/mypanel",

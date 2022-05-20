@@ -2,12 +2,11 @@
 import { useStore } from "@/stores/store";
 import Header from "./Header.vue";
 
-const store = useStore()
+const store = useStore();
 
 function auth(connection: string) {
   window.location.href = store.auth(connection);
 }
-
 </script>
 <template>
   <main class="flex flex-col h-full w-full absolute">
@@ -20,8 +19,8 @@ function auth(connection: string) {
     <div class="bg-white rounded-xl p-4 text-black m-auto">
       <h2 class="text-center mb-4 font-bold">Login or Register</h2>
       <button
-      @click="auth('google')"
-        class="px-2 py-4 shadow-sm shadow-black border-2 border-blue-500 rounded-sm hover:bg-blue-400"
+        @click="auth('google')"
+        class="px-2 py-4 shadow-black border-2 border-blue-500 rounded-sm hover:bg-blue-400 shadow-lg group hover:outline hover:outline-4 hover:outline-red-200 hover:bg-gradient-to-br hover: from-fuchsia-600 hover:to-orange-600 hover:text-white transition-all ease-in duration-75"
       >
         Sign in with Google
       </button>
