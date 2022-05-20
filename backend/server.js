@@ -72,7 +72,7 @@ app.use(passport.session());
 
 app.use(compression());
 
-// require("./routes/card.routes")(app);
+require("./routes/planner.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/auth.routes")(app);
 
