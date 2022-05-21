@@ -29,9 +29,10 @@ const routes = [
     component: Account,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
       const store = useStore();
-      if (!store.getUsername) return "/";
       if (!store.getUsername) {
-        store.fetchProfile();
+        return "/";
+      } else {
+        // store.fetchProfile().then(store.fetchUserPlanners(store.getUsername));
       }
       return true;
     },
@@ -53,9 +54,7 @@ router.beforeEach((to, from) => {
 
 router.beforeEach(async (to, from) => {
   console.log(from.name);
-  if (
-    (from.name == undefined && to.name != "Home" && to.name!="Login")
-  ) {
+  if (from.name == undefined && to.name != "Home" && to.name != "Login") {
     let store = useStore();
     let toast = useToast();
     await axios
