@@ -38,8 +38,29 @@ function findAllPlanner(req, res) {
     }
   });
 }
+ 
+
+function updatePlanner(req, res) {
+  User.findById(req.body._id).then(async(user) => {
+    if (user.planner.includes(req.params._id)) {
+      Planner.findByIdAndUpdate(req.params._id).then(async(planner) => {
+        for (let index = 0; index < user.planner.length; index++) {
+          const element = array[index];
+          if (planner.users[index]._id == req.body._id) {
+            planner.users[index].datezone = req.body.datezone;          
+          }
+        }
+        planner.save();
+      })  
+    } else {
+        console.log("duh");
+    }
+  })
+    
+}
 
 module.exports = {
   createPlanner,
   findAllPlanner,
+  updatePlanner,
 };
