@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import { useStore } from "@/stores/store";
-import { ref } from "vue";
+import { storeToRefs } from "pinia";
 import Header from "./Header.vue";
+const store = useStore();
 
 function nextStep() {
-  
-  const store = useStore();
   console.log(store.getUsername);
   if (!store.getUsername) {
     window.location.href =  "/login";
@@ -13,6 +12,7 @@ function nextStep() {
     window.location.href =  "/mypanel";
   }
 }
+store.fetchProfile();
 
 </script>
 <template>
