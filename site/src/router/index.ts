@@ -22,6 +22,15 @@ const routes = [
     path: "/create",
     name: "Create",
     component: Create,
+    beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      const store = useStore();
+      if (!store.getUsername) {
+        return "/";
+      } else {
+        // store.fetchProfile().then(store.fetchUserPlanners(store.getUsername));
+      }
+      return true;
+    },
   },
   {
     path: "/mypanel",
@@ -54,7 +63,10 @@ router.beforeEach((to, from) => {
 
 router.beforeEach(async (to, from) => {
   console.log(from.name);
-  if (from.name == undefined && to.name != "Home" && to.name != "Login") {
+  if (
+    (from.name == undefined && to.name != "Home" && to.name != "Login") ||
+    (from.name == "Home" && to.name !== "Home" && to.name!=="Login")
+  ) {
     let store = useStore();
     let toast = useToast();
     await axios
@@ -64,7 +76,7 @@ router.beforeEach(async (to, from) => {
       .then((data) => {
         store.setUserData(data.data);
         // store.fetchCards()
-        document.title = "NEC - " + String(to.name) || title;
+        document.title = "PlanD - " + String(to.name) || title;
       })
       .catch((err) => {
         console.log(err);
