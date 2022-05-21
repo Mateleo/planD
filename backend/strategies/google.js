@@ -23,10 +23,9 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/api/auth/google/callback",
       passReqToCallback: true,
-      scope: ["openid","profile","email"],
+      scope: ["openid","profile"],
     },
     async function (request, accessToken, refreshToken, profile, done) {
-        console.log(profile.emails)
       try {
         const findUser = await User.findOneAndUpdate(
           { googleId: profile.id },

@@ -3,7 +3,7 @@ module.exports = function (app) {
   app.get(
     "/api/auth/google",
     passport.authenticate("google", {
-      scope: ["openid", "email", "profile"],
+      scope: ["openid", "profile"],
     })
   );
   app.get(

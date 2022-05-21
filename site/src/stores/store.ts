@@ -8,6 +8,13 @@ interface user {
   googleId: string;
   avatar: string;
   username: string;
+  planner: [planner]
+}
+
+interface planner{
+  _id:string,
+  name:string,
+  users:any,
 }
 
 interface PromisePlanner{
@@ -33,12 +40,20 @@ export const useStore = defineStore("main", {
   },
   actions: {
     async fetchProfile() {
-      const response = await axios.get(import.meta.env.VITE_API_URL + "/cards", {
+      const response = await axios.get(import.meta.env.VITE_API_URL + "/users/myprofile", {
         withCredentials: true,
       });
       this.userData = response.data;
       console.log("fetch profile");
       console.log(this.userData);
+    },
+    async fetchUserPlanners(userid:string) {
+      const response = await axios.get(import.meta.env.VITE_API_URL + "/planner/"+userid, {
+        withCredentials: true,
+      });
+      console.log("fetch User planners")
+      console.log(response.data)
+      this.userData.planner = response.data;
     },
     async putPlanner(data: PromisePlanner) {
       console.log(data)
