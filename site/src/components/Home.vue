@@ -18,11 +18,11 @@ store.fetchProfile();
   <Header></Header>
   <main class="text-4xl mt-5 text-center flex flex-wrap w-[70%] m-auto">
     <div class="w-full text-center text-4xl font-bold my-5">
-      The best planner for your holliday
+      The best planner for your holliday<br>
     </div>
     <div class="w-1/2 text-2xl m-auto text-justify pr-4">
-      Bored of trying to plan your holliday with your friend ? <br>
-      You have the perfect destination with your friends in mind but you can't find a date where you are all available ? <br>
+      Bored of trying to plan your holliday with your friend ? <br><br>
+      You have the perfect destination with your friends in mind but you can't find a date where you are all available ? <br><br>
       Don't look elsewhere we have the solution <br>
     </div>
     <div class="w-1/2"><img class="m-auto" src="https://picsum.photos/600" alt="" /></div>
