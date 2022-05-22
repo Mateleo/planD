@@ -4,37 +4,42 @@ import Header from "./Header.vue";
 
 <template>
   <Header></Header>
-  <main class="text-4xl mt-5 text-center flex flex-wrap w-[70%] m-auto">
-    <div class="w-full text-center text-4xl font-bold my-5">Our team</div>
-    <div class="w-1/2 text-2xl m-auto pr-4">
-      Aliette Vannier
-      <img class="m-auto w-[500px] h-[500px]" src="../../Pics/Aliette.png" alt="" /> 
-      Email: aliette.vannier@efrei.net <br />
-      <br />
+  <h1 class="w-full text-center text-4xl font-bold">Our Team</h1>
+  <main class="grid lg:grid-cols-2 gap-8 w-[90%] sm:w-[70%] m-auto text-center">
+    <div class="flex flex-col">
+      <h2 class="text-center">Matéo Dominguez</h2>
+      <div class="m-auto">
+        <img class="max-w-[300px]" src="../../Pics/Matéo.png" alt="" />
+      </div>
+      <p>mateo.dominguez@efrei.net</p>
     </div>
-    <div class="w-1/2 text-2xl m-auto pr-4">
-      Matéo Dominguez
-      <img class="m-auto w-[500px] h-[500px]" src="../../Pics/Matéo.png" alt="" />
-      Email: mateo.dominguez@efrei.net <br />
-      <br />
+    <div class="flex flex-col">
+      <h2 class="text-center">Théo Briant</h2>
+      <div class="m-auto">
+        <img class="max-w-[300px]" src="../../Pics/Theo.png" alt="" />
+      </div>
+      <p>théo.briant@efrei.net</p>
     </div>
-    <div class="w-1/2 text-2xl m-auto pr-4">
-      Nicolas Blanchard
-      <img class="m-auto w-[500px] h-[500px]" src="../../Pics/Nico.png" alt="" />
-      Email: nicolas.blanchard.19@efrei.net <br />
-      <br />
+    <div class="flex flex-col">
+      <h2 class="text-center">Marc Bernard</h2>
+      <div class="m-auto">
+        <img class="max-w-[300px]" src="../../Pics/Marc.png" alt="" />
+      </div>
+      <p>marc.bernard@efrei.net</p>
     </div>
-    <div class="w-1/2 text-2xl m-auto pr-4">
-      Marc Bernard
-      <img class="m-auto w-[500px] h-[500px]" src="../../Pics/Marc.png" alt="" />
-      Email: marc.bernard@efrei.net <br />
-      <br />
+    <div class="flex flex-col">
+      <h2 class="text-center">Nicolas Blanchard</h2>
+      <div class="m-auto">
+        <img class="max-w-[300px]" src="../../Pics/nico.png" alt="" />
+      </div>
+      <p>nicolas.blanchard19@efrei.net</p>
     </div>
-    <div class="w-1/2 text-2xl m-auto pr-4">
-      Théo Briant
-      <img class="m-auto w-[500px] h-[500px]" src="../../Pics/Theo.png" alt="" />
-      Email: theo.briant@efrei.net <br />
-      <br />
+    <div class="flex flex-col">
+      <h2 class="text-center">Aliette Vanié</h2>
+      <div class="m-auto">
+        <img class="max-w-[300px]" src="../../Pics/aliette.png" alt="" />
+      </div>
+      <p>aliette.vanié@efrei.net</p>
     </div>
   </main>
 </template>

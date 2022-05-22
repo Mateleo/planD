@@ -39,7 +39,7 @@ function generateCode() {
 </script>
 <template>
   <Header></Header>
-  <main class="flex flex-col text-black bg-white rounded-xl w-[80%] m-auto p-4">
+  <main class="flex flex-col text-black bg-white rounded-xl w-[95%] sm:w-[80%] m-auto p-4">
     <h1 class="text-4xl text-center font-bold">Planner Creator</h1>
     <h2 class="text-black/80 text-2xl mt-2">Name</h2>
     <input

@@ -61,9 +61,9 @@ store.fetchUserPlanners(store.getUserId);
 </script>
 <template>
   <Header></Header>
-  <main class="flex flex-wrap m-4 text-black">
-    <div class="w-full mb-6 text-white">
-      <h1 class="text-5xl text-center">
+  <main class="flex flex-wrap flex-col-reverse md:flex-row m-1 md:m-4 text-black">
+    <div class="w-full mb-6 text-white order-4 md:order-1">
+      <h1 class="text-xl md:text-5xl text-center">
         Planner :
         {{
           store.userData.planner.find(
@@ -72,44 +72,46 @@ store.fetchUserPlanners(store.getUserId);
         }}
       </h1>
     </div>
-    <div class="bg-white rounded-lg p-4 mr-4 flex-col">
-      <h1>My dates</h1>
-      <div class="flex">
-        <div>
-          <p>FROM</p>
-          <input
-            class="border-2 border-black rounded-sm aspect-square w-12 h-12 mr-5 p-[1px]"
-            type="number"
-            name=""
-            id=""
-            v-model="from"
-            min="1"
-            max="31"
-            @input="checker()"
-          />
+    <div class="w-full md:w-fit order-2">
+      <div class="bg-white rounded-lg p-4 md:mr-4 flex-col m-auto w-fit">
+        <h1>My dates</h1>
+        <div class="flex">
+          <div>
+            <p>FROM</p>
+            <input
+              class="text-center border-2 border-black rounded-sm aspect-square w-12 h-12 mr-5 p-[1px]"
+              type="number"
+              name=""
+              id=""
+              v-model="from"
+              min="1"
+              max="31"
+              @input="checker()"
+            />
+          </div>
+          <div>
+            <p>TO</p>
+            <input
+              class="text-center border-2 border-black rounded-sm aspect-square w-12 h-12 p-[1px]"
+              type="number"
+              name=""
+              id=""
+              v-model="to"
+              min="1"
+              max="31"
+              @input="checker"
+            />
+          </div>
         </div>
-        <div>
-          <p>TO</p>
-          <input
-            class="border-2 border-black rounded-sm aspect-square w-12 h-12 p-[1px]"
-            type="number"
-            name=""
-            id=""
-            v-model="to"
-            min="1"
-            max="31"
-            @input="checker"
-          />
-        </div>
+        <button
+          @click="save"
+          class="mt-3 bg-blue-500 rounded-lg text-white p-1 px-3 font-bold text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-blue-200 hover:bg-gradient-to-br hover: from-emerald-600 hover:to-lime-600 hover:text-white transition-all ease-in duration-75"
+        >
+          Save
+        </button>
       </div>
-      <button
-        @click="save"
-        class="w-full mt-3 bg-blue-500 rounded-lg text-white p-1 px-3 font-bold text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-blue-200 hover:bg-gradient-to-br hover: from-emerald-600 hover:to-lime-600 hover:text-white transition-all ease-in duration-75"
-      >
-        Save
-      </button>
     </div>
-    <div class="bg-white rounded-lg p-4 grow">
+    <div class="bg-white rounded-lg p-1 md:p-4 grow w-full md:w-fit md:mt-0 mb-3 order-3">
       <div
         class="mb-5"
         v-for="user in store.userData.planner.find(
@@ -117,7 +119,7 @@ store.fetchUserPlanners(store.getUserId);
         )?.users"
       >
         <div class="flex">
-          <p class="mb-3 mr-5 text-2xl font-bold">
+          <p class="mb-3  mr-1 md:mr-5 text-sm md:text-2xl font-bold">
             {{ user.username }}
           </p>
           <div class="grid gridcols grow">

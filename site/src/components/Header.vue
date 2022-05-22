@@ -10,7 +10,7 @@
           to="/"
           class="font-dmserif text-5xl w-full text-center md:w-auto md:text-left flex"
           >
-          <div><img src="../assets/LOGO.svg" alt=""></div>
+          <div class="w-[50px] h-[50px]"><img src="../assets/LOGO.svg" alt=""></div>
           PlanD</router-link
         >
       </div>

@@ -6,38 +6,44 @@ import Header from "./Header.vue";
 const store = useStore();
 let link = ref("");
 
-function copy(text:string) {
+function copy(text: string) {
   navigator.clipboard.writeText(text);
 }
 
-function route(plannerlink:string){
-  return "/planner/"+plannerlink
+function route(plannerlink: string) {
+  return "/planner/" + plannerlink;
 }
 
 store.fetchUserPlanners(store.getUserId);
 </script>
 <template>
   <Header></Header>
-  <main class="bg-white w-1/2 flex flex-col rounded-xl p-5 text-black m-auto h-full">
+  <main
+    class="bg-white w-[95%] md:w-1/2 flex flex-col rounded-xl p-2 sm:p-5 text-black m-auto h-full"
+  >
     <div class="flex m-auto mb-5">
-      <div><img class="rounded-full mr-5" :src="store.getAvatar" alt="" /></div>
-      <h1 class="text-5xl m-auto">{{ store.getUsername }}</h1>
+      <div class="w-[50px] md:w-full mr-5">
+        <img class="rounded-full" :src="store.getAvatar" alt="" />
+      </div>
+      <h1 class="text-3xl md:text-5xl m-auto">{{ store.getUsername }}</h1>
     </div>
     <div>
-      <h2 class="font-bold text-xl text-black/80">My Plan</h2>
+      <h2 class="font-bold text-lg md:text-xl text-black/80">My Plan</h2>
       <div
         v-for="planner in store.userData.planner"
         class="p-2 mb-2 rounded-lg flex bg-emerald-300"
       >
-        <h3 class="text-2xl text-center m-auto ml-0">{{ planner.name }}</h3>
+        <h3 class="text-sm md:text-2xl text-center m-auto ml-0">{{ planner.name }}</h3>
         <router-link
-        :to="route(planner.link)"
-          class="ml-auto bg-yellow-500 rounded-2xl p-2 px-4 font-bold text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-red-200 hover:bg-gradient-to-br hover: from-fuchsia-600 hover:to-orange-600 hover:text-white transition-all ease-in duration-75"
+          :to="route(planner.link)"
+          class="ml-auto bg-yellow-500 rounded-lg md:rounded-2xl p-2 px-4 font-bold text-sm md:text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-red-200 hover:bg-gradient-to-br hover: from-fuchsia-600 hover:to-orange-600 hover:text-white transition-all ease-in duration-75"
         >
           OPEN
         </router-link>
-        <div class="my-auto ml-3 hover:border-2 hover:border-green-700 border-2 border-transparent"
-        @click="copy(planner.link)">
+        <div
+          class="my-auto ml-1 md:ml-3 hover:border-2 hover:border-green-700 border-2 border-transparent"
+          @click="copy(planner.link)"
+        >
           <svg
             width="24"
             height="24"
@@ -61,19 +67,23 @@ store.fetchUserPlanners(store.getUserId);
           </svg>
         </div>
       </div>
-      <h2 class="font-bold text-xl text-black/80 mt-2">Join</h2>
-      <input
-        v-model="link"
-        type="text"
-        class="p-2 px-4 text-sm rounded-md bg-black/10 focus:outline-sky-400 mr-5 w-[35%] text-center"
-        placeholder="R9M529B51PY2S93JGLY7"
-      />
-      <button
-        @click="store.plannerJoin({ _id: store.getUserId,username:store.getUsername }, link)"
-        class="px-4 py-[6px] bg-sky-400 font-bold text-white hover:bg-sky-500 transition-colors ease-in-out duration-150 rounded-md"
-      >
-        ADD
-      </button>
+      <h2 class="font-bold text-lg md:text-xl text-black/80 mt-2">Join</h2>
+      <div class="flex justify-between">
+        <input
+          v-model="link"
+          type="text"
+          class="p-2 px-4 text-sm grow rounded-md bg-black/10 focus:outline-sky-400 mr-1 sm:mr-5 max-w-[300px] text-center min-w-0"
+          placeholder="R9M529B51PY2S93JGLY7"
+        />
+        <button
+          @click="
+            store.plannerJoin({ _id: store.getUserId, username: store.getUsername }, link)
+          "
+          class="px-4 py-[6px] bg-sky-400 font-bold text-white hover:bg-sky-500 transition-colors ease-in-out duration-150 rounded-md"
+        >
+          ADD
+        </button>
+      </div>
     </div>
   </main>
 </template>
