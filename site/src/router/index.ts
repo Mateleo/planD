@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, type RouteLocationNormalized } from "vu
 import Home from "../components/Home.vue";
 import Login from "../components/Login.vue";
 import Account from "../components/Account.vue";
+import Planner from"../components/Planner.vue";
 import Create from "../components/Create.vue";
 import { useStore } from "@/stores/store";
 import { useToast } from "vue-toastification";
@@ -22,6 +23,20 @@ const routes = [
     path: "/create",
     name: "Create",
     component: Create,
+    beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+      const store = useStore();
+      if (!store.getUsername) {
+        return "/";
+      } else {
+        // store.fetchProfile().then(store.fetchUserPlanners(store.getUsername));
+      }
+      return true;
+    },
+  },
+  {
+    path: "/planner",
+    name: "Planner",
+    component: Planner,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
       const store = useStore();
       if (!store.getUsername) {
