@@ -6,13 +6,12 @@
       class="flex flex-wrap md:flex-nowrap justify-between mb-3 md:pr-4 md:pl-3 px-1 bg-gradient-to-r from-[#414345] to-[#232526]"
     >
       <div class="flex m-auto">
-        <router-link to="/" class="aspect-square w-[50px]"
-          ><img src="" class="" alt=""
-        /></router-link>
         <router-link
           to="/"
-          class="font-dmserif text-5xl w-full text-center md:w-auto md:text-left"
-          >PlanD</router-link
+          class="font-dmserif text-5xl w-full text-center md:w-auto md:text-left flex"
+          >
+          <div><img src="../assets/LOGO.svg" alt=""></div>
+          PlanD</router-link
         >
       </div>
       <nav
