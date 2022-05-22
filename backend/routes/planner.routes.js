@@ -18,7 +18,7 @@ module.exports = function (app) {
   app.put("/api/planner", auth.isAuthenticated, urlencodedParser, planner.createPlanner);
   app.get("/api/planner/:_id", auth.isAuthenticated, planner.findAllPlanner);
   app.patch("/api/planner/:_id", auth.isAuthenticated, planner.updatePlanner);
-  app.get("/api/planner/join/:link",auth.isAuthenticated, planner.joinPlanner)
+  app.patch("/api/planner/join/:link",auth.isAuthenticated,urlencodedParser, planner.joinPlanner)
 
   // app.get("/api/users/mycollection", auth.isAuthenticated, user.getMyCollection)
   // app.get("/api/users/myboosters", auth.isAuthenticated, user.getMyBoosters)

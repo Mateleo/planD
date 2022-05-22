@@ -58,26 +58,28 @@ function updatePlanner(req, res) {
 }
 
 function joinPlanner(req, res) {
-  console.log(req.body)
-  if(req.body==undefined){
-    res.send("This user does not exist")
-    return
+  console.log(req.body);
+  if (req.body == undefined) {
+    res.send("This user does not exist");
+    return;
   }
   Planner.find().then((planners) => {
     if (planners.find((planner) => planner.link == req.params.link)) {
       //the link is correspond to a valid planner
-      const plannerId = planners.find(planner => planner.link==req.params.link)._id
-      User.findById(req.body._id).then((user) => {
-        if (!user.planner.includes(plannerId)) {
-          user.planner.push(plannerId);
-          user.save()
-          res.send("You have joined this planner")
-        }else{
-          res.send("You have this planner !")
-        }
-      });
-    }else{
-      res.send("This planner does not exist")
+      const plannerId = planners.find((planner) => planner.link == req.params.link)._id;
+      User.findById(req.body._id)
+        .then((user) => {
+          if (!user.planner.includes(plannerId)) {
+            user.planner.push(plannerId);
+            user.save();
+            res.send("You have joined this planner");
+          } else {
+            res.send("You have this planner !");
+          }
+        })
+        .catch((err) => res.send("Can't find user"));
+    } else {
+      res.send("This planner does not exist");
     }
   });
 }

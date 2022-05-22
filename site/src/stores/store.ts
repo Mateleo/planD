@@ -92,6 +92,17 @@ export const useStore = defineStore("main", {
       await axios(options);
       console.log("create card");
     },
+    async plannerJoin(data:{_id:string}, plannerlink: string) {
+      console.log(data,plannerlink);
+      const options: AxiosRequestConfig = {
+        method: "PATCH",
+        url: import.meta.env.VITE_API_URL + "/planner/join/" + plannerlink,
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        withCredentials: true,
+        data: qs.stringify(data),
+      };
+      await axios(options);
+    },
     auth(connection: string) {
       console.log(import.meta.env.VITE_API_URL + "/auth/" + connection);
       return import.meta.env.VITE_API_URL + "/auth/" + connection;
