@@ -10,6 +10,9 @@ function copy(text:string) {
   navigator.clipboard.writeText(text);
 }
 
+function route(plannerlink:string){
+  return "/planner/"+plannerlink
+}
 
 store.fetchUserPlanners(store.getUserId);
 </script>
@@ -27,11 +30,12 @@ store.fetchUserPlanners(store.getUserId);
         class="p-2 mb-2 rounded-lg flex bg-emerald-300"
       >
         <h3 class="text-2xl text-center m-auto ml-0">{{ planner.name }}</h3>
-        <button
+        <router-link
+        :to="route(planner.link)"
           class="ml-auto bg-yellow-500 rounded-2xl p-2 px-4 font-bold text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-red-200 hover:bg-gradient-to-br hover: from-fuchsia-600 hover:to-orange-600 hover:text-white transition-all ease-in duration-75"
         >
           OPEN
-        </button>
+        </router-link>
         <div class="my-auto ml-3 hover:border-2 hover:border-green-700 border-2 border-transparent"
         @click="copy(planner.link)">
           <svg
@@ -61,7 +65,7 @@ store.fetchUserPlanners(store.getUserId);
       <input
         v-model="link"
         type="text"
-        class="p-2 px-4 text-sm rounded-md bg-black/10 focus:outline-sky-400 mr-5"
+        class="p-2 px-4 text-sm rounded-md bg-black/10 focus:outline-sky-400 mr-5 w-[35%] text-center"
         placeholder="R9M529B51PY2S93JGLY7"
       />
       <button

@@ -15,18 +15,28 @@ function checker() {
   if (from.value > to.value) {
     from.value = 0;
   }
-  let local = []
-  for(let x=from.value;x<=to.value;x++){
-    local.push(x)
+  let local = [];
+  for (let x = from.value; x <= to.value; x++) {
+    local.push(x);
   }
-  dateRange.value = local
+  dateRange.value = local;
   console.log(dateRange.value);
 }
 store.fetchUserPlanners(store.getUserId);
 </script>
 <template>
   <Header></Header>
-  <main class="flex m-4 text-black">
+  <main class="flex flex-wrap m-4 text-black">
+    <div class="w-full mb-6 text-white">
+      <h1 class="text-5xl text-center">
+        Planner :
+        {{
+          store.userData.planner.find(
+            (planner) => planner.link == $route.params.plannerlink
+          )?.name
+        }}
+      </h1>
+    </div>
     <div class="bg-white rounded-lg p-4 mr-4 flex-col">
       <h1>My dates</h1>
       <div class="flex">
