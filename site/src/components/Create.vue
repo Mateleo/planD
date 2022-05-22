@@ -18,6 +18,8 @@ function log() {
     users: [{ userId: store.userData._id, datezone: [] }],
     link: code,
   });
+  window.location.href =  "/mypanel";
+
 }
 
 function generateCode() {
