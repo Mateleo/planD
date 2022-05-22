@@ -9,7 +9,7 @@ import Header from "./Header.vue";
     <div class="w-1/2 text-2xl m-auto pr-4">
       Aliette Vannier
       <img class="m-auto" src="../../Pics/Aliette.png" alt="" /> 
-      Email <br />
+      Email: aliette.vannier@efrei.net <br />
       <br />
     </div>
     <div class="w-1/2 text-2xl m-auto pr-4">
@@ -26,8 +26,8 @@ import Header from "./Header.vue";
     </div>
     <div class="w-1/2 text-2xl m-auto pr-4">
       Marc Bernard
-      <img class="m-auto" src="../../Pics/Nico.png" alt="" />
-      Email <br />
+      <img class="m-auto" src="../../Pics/Marc.png" alt="" />
+      Email: marc.bernard@efrei.net <br />
       <br />
     </div>
     <div class="w-1/2 text-2xl m-auto pr-4">
