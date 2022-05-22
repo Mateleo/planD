@@ -102,6 +102,7 @@ export const useStore = defineStore("main", {
         data: qs.stringify(data),
       };
       await axios(options);
+      this.fetchUserPlanners(this.userData._id)
     },
     auth(connection: string) {
       console.log(import.meta.env.VITE_API_URL + "/auth/" + connection);
