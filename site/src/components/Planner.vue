@@ -3,17 +3,20 @@ import { useStore } from "@/stores/store";
 import { ref } from "vue";
 import Header from "./Header.vue";
 import Block from "./Block.vue";
+import { useRouter, useRoute } from "vue-router";
+import router from "@/router";
 
 const store = useStore();
+const route = useRoute();
 
-let from = ref(0);
-let to = ref(0);
+let from = ref(1);
+let to = ref(1);
 
 let dateRange = ref();
 
 function checker() {
   if (from.value > to.value) {
-    from.value = 0;
+    from.value = 1;
   }
   let local = [];
   for (let x = from.value; x <= to.value; x++) {
@@ -22,6 +25,15 @@ function checker() {
   dateRange.value = local;
   console.log(dateRange.value);
 }
+function save() {
+  let dateZone = [];
+  dateZone.push(from.value + "-" + to.value);
+  store.updateUserDateZone(
+    { _id: store.getUserId, datezone: dateZone },
+    route.params.plannerlink.toString()
+  );
+}
+
 store.fetchUserPlanners(store.getUserId);
 </script>
 <template>
@@ -48,7 +60,7 @@ store.fetchUserPlanners(store.getUserId);
             name=""
             id=""
             v-model="from"
-            min="0"
+            min="1"
             max="31"
             @input="checker()"
           />
@@ -61,13 +73,14 @@ store.fetchUserPlanners(store.getUserId);
             name=""
             id=""
             v-model="to"
-            min="0"
+            min="1"
             max="31"
             @input="checker"
           />
         </div>
       </div>
       <button
+      @click="save"
         class="w-full mt-3 bg-blue-500 rounded-lg text-white p-1 px-3 font-bold text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-blue-200 hover:bg-gradient-to-br hover: from-emerald-600 hover:to-lime-600 hover:text-white transition-all ease-in duration-75"
       >
         Save

@@ -39,21 +39,25 @@ function findAllPlanner(req, res) {
   });
 }
 
-function updatePlanner(req, res) {
-  User.findById(req.body._id).then(async (user) => {
-    if (user.planner.includes(req.params._id)) {
-      Planner.findByIdAndUpdate(req.params._id).then(async (planner) => {
-        for (let index = 0; index < user.planner.length; index++) {
-          const element = array[index];
-          if (planner.users[index]._id == req.body._id) {
-            planner.users[index].datezone = req.body.datezone;
-          }
-        }
-        planner.save();
-      });
-    } else {
-      console.log("duh");
+async function updatePlanner(req, res) {
+  let id = "";
+  await Planner.find().then((planners) => {
+    let planner = planners.find((planner) => planner.link == req.params.link);
+    if (planner) {
+      console.log(planner);
+      id = planner._id;
     }
+  });
+  console.log(id);
+  Planner.findByIdAndUpdate(id).then((planner) => {
+    plannerUser = planner.users.find((user) => user.userId == req.body._id);
+    if (plannerUser) {
+      plannerUser.datezone = req.body.datezone;
+    }
+    planner.users = planner.users.filter((user) => user.userId !== req.body._id);
+    planner.users.push(plannerUser);
+    console.log(planner);
+    planner.save();
   });
 }
 

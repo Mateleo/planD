@@ -25,9 +25,9 @@ interface PromisePlanner {
   users?: [{ userId: string; datezone: [string?] }];
 }
 
-interface PromisePlannerUpdate {
-  userid?: string;
-  datezone: any;
+interface PromiseUser {
+  _id: string;
+  datezone: Array<string>;
 }
 
 export const useStore = defineStore("main", {
@@ -80,11 +80,11 @@ export const useStore = defineStore("main", {
       await axios(options);
       console.log("create card");
     },
-    async updateUserPlanner(data: PromisePlannerUpdate, plannerid: string) {
-      console.log(data);
+    async updateUserDateZone(data: PromiseUser, plannerlink: string) {
+      console.log(data,plannerlink);
       const options: AxiosRequestConfig = {
         method: "PATCH",
-        url: import.meta.env.VITE_API_URL + "/planner/" + plannerid,
+        url: import.meta.env.VITE_API_URL + "/planner/" + plannerlink,
         headers: { "content-type": "application/x-www-form-urlencoded" },
         withCredentials: true,
         data: qs.stringify(data),
@@ -97,6 +97,17 @@ export const useStore = defineStore("main", {
       const options: AxiosRequestConfig = {
         method: "PATCH",
         url: import.meta.env.VITE_API_URL + "/planner/join/" + plannerlink,
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        withCredentials: true,
+        data: qs.stringify(data),
+      };
+      await axios(options);
+      this.fetchUserPlanners(this.userData._id)
+    },
+    async saveUserDateZone(data:{_id:string,dateZone:Array<any>}, plannerid: string) {
+      const options: AxiosRequestConfig = {
+        method: "PATCH",
+        url: import.meta.env.VITE_API_URL + "/users/" + plannerid,
         headers: { "content-type": "application/x-www-form-urlencoded" },
         withCredentials: true,
         data: qs.stringify(data),
