@@ -15,8 +15,13 @@ module.exports = function (app) {
   // );
 
   //new routes for S2
-  app.get("/api/users/myprofile", auth.isAuthenticated, user.getMyProfile)
-  app.get("/api/users/idtouser", auth.isAuthenticated, user.getUserNameByID)
+  app.get("/api/users/myprofile", auth.isAuthenticated, user.getMyProfile);
+  app.get(
+    "/api/users/name/:_id",
+    auth.isAuthenticated,
+    urlencodedParser,
+    user.getUserNameByID
+  );
 
   // app.get("/api/users/myplanner", auth.isAuthenticated, user.getPlanner)
   // app.get("/api/users/myboosters", auth.isAuthenticated, user.getMyBoosters)

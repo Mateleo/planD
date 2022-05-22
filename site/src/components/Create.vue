@@ -15,11 +15,12 @@ function log() {
   visible.value = true;
   store.putPlanner({
     name: name.value,
-    users: [{ userId: store.userData._id, datezone: [] }],
+    users: [
+      { username: store.userData.username, userId: store.userData._id, datezone: [] },
+    ],
     link: code,
   });
-  window.location.href =  "/mypanel";
-
+  window.location.href = "/mypanel";
 }
 
 function generateCode() {

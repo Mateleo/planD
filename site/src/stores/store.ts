@@ -22,12 +22,12 @@ interface PromisePlanner {
   _id?: string;
   name?: string;
   link?: string;
-  users?: [{ userId: string; datezone: [string?] }];
+  users?: [{ username: string; userId: string; datezone: [string?] }];
 }
 
 interface PromiseUser {
   _id: string;
-  datezone: Array<string>;
+  datezone?: Array<string>;
 }
 
 export const useStore = defineStore("main", {
@@ -81,7 +81,7 @@ export const useStore = defineStore("main", {
       console.log("create card");
     },
     async updateUserDateZone(data: PromiseUser, plannerlink: string) {
-      console.log(data,plannerlink);
+      console.log(data, plannerlink);
       const options: AxiosRequestConfig = {
         method: "PATCH",
         url: import.meta.env.VITE_API_URL + "/planner/" + plannerlink,
@@ -92,8 +92,8 @@ export const useStore = defineStore("main", {
       await axios(options);
       console.log("create card");
     },
-    async plannerJoin(data:{_id:string}, plannerlink: string) {
-      console.log(data,plannerlink);
+    async plannerJoin(data: { _id: string }, plannerlink: string) {
+      console.log(data, plannerlink);
       const options: AxiosRequestConfig = {
         method: "PATCH",
         url: import.meta.env.VITE_API_URL + "/planner/join/" + plannerlink,
@@ -102,9 +102,12 @@ export const useStore = defineStore("main", {
         data: qs.stringify(data),
       };
       await axios(options);
-      this.fetchUserPlanners(this.userData._id)
+      this.fetchUserPlanners(this.userData._id);
     },
-    async saveUserDateZone(data:{_id:string,dateZone:Array<any>}, plannerid: string) {
+    async saveUserDateZone(
+      data: { _id: string; dateZone: Array<any> },
+      plannerid: string
+    ) {
       const options: AxiosRequestConfig = {
         method: "PATCH",
         url: import.meta.env.VITE_API_URL + "/users/" + plannerid,
@@ -113,12 +116,22 @@ export const useStore = defineStore("main", {
         data: qs.stringify(data),
       };
       await axios(options);
-      this.fetchUserPlanners(this.userData._id)
+      this.fetchUserPlanners(this.userData._id);
+    },
+    async getUsernamebyId(userid: string) {
+      const response = await axios.get(
+        import.meta.env.VITE_API_URL + "/users/name/" + userid,
+        {
+          withCredentials: true,
+        }
+      );
+      return response.data;
     },
     auth(connection: string) {
       console.log(import.meta.env.VITE_API_URL + "/auth/" + connection);
       return import.meta.env.VITE_API_URL + "/auth/" + connection;
     },
+
     setUserData(payload: user) {
       this.userData = payload;
     },

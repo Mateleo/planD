@@ -71,9 +71,9 @@ function getMyProfile(req, res) {
 }
 
 function getUserNameByID(req, res) {
-  User.findById(req.user._id).then((user) => {
+  User.findById(req.params._id).then((user) => {
     res.send(user.username);
-  });
+    });
 }
 
 module.exports = {

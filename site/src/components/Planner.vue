@@ -34,6 +34,28 @@ function save() {
   );
 }
 
+function dateZoneToRange(dateZone: any) {
+  if(dateZone.length<=0){
+    return []
+  }
+  let from = parseInt(dateZone[0].split("-")[0]);
+  let to = parseInt(dateZone[0].split("-")[1]);
+  let local = [];
+  for (let x = from; x <= to; x++) {
+    local.push(x);
+  }
+  return local;
+}
+
+function getRandomColor() {
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 store.fetchUserPlanners(store.getUserId);
 </script>
 <template>
@@ -80,29 +102,30 @@ store.fetchUserPlanners(store.getUserId);
         </div>
       </div>
       <button
-      @click="save"
+        @click="save"
         class="w-full mt-3 bg-blue-500 rounded-lg text-white p-1 px-3 font-bold text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-blue-200 hover:bg-gradient-to-br hover: from-emerald-600 hover:to-lime-600 hover:text-white transition-all ease-in duration-75"
       >
         Save
       </button>
     </div>
     <div class="bg-white rounded-lg p-4 grow">
-      <div class="flex">
-        <p class="mb-3 mr-5 text-2xl font-bold">Matéo</p>
-        <div class="grid gridcols grow">
-          <div v-for="i in 31">
-            <Block :id="i" :dateRange="dateRange"></Block>
+      <div
+        class="mb-5"
+        v-for="user in store.userData.planner.find(
+          (planner) => planner.link == $route.params.plannerlink
+        )?.users"
+      >
+        <div class="flex">
+          <p class="mb-3 mr-5 text-2xl font-bold">
+            {{user.username}}
+          </p>
+          <div class="grid gridcols grow">
+            <div v-for="i in 31">
+              <Block :id="i" :dateRange="dateZoneToRange(user.datezone)"></Block>
+            </div>
           </div>
         </div>
       </div>
-      <!-- <div class="flex">
-        <p class="mb-3 mr-5 text-2xl font-bold">Matéo</p>
-        <div class="grid gridcols gap-1 grow">
-          <div v-for="i in 31">
-            {{ i }}
-          </div>
-        </div>
-      </div> -->
     </div>
   </main>
 </template>
