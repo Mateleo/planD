@@ -25,18 +25,19 @@ function checker() {
   dateRange.value = local;
   console.log(dateRange.value);
 }
-function save() {
+async function save() {
   let dateZone = [];
   dateZone.push(from.value + "-" + to.value);
-  store.updateUserDateZone(
+  await store.updateUserDateZone(
     { _id: store.getUserId, datezone: dateZone },
     route.params.plannerlink.toString()
   );
+  store.fetchUserPlanners(store.getUserId);
 }
 
 function dateZoneToRange(dateZone: any) {
-  if(dateZone.length<=0){
-    return []
+  if (dateZone.length <= 0) {
+    return [];
   }
   let from = parseInt(dateZone[0].split("-")[0]);
   let to = parseInt(dateZone[0].split("-")[1]);
@@ -117,7 +118,7 @@ store.fetchUserPlanners(store.getUserId);
       >
         <div class="flex">
           <p class="mb-3 mr-5 text-2xl font-bold">
-            {{user.username}}
+            {{ user.username }}
           </p>
           <div class="grid gridcols grow">
             <div v-for="i in 31">

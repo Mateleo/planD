@@ -44,11 +44,9 @@ async function updatePlanner(req, res) {
   await Planner.find().then((planners) => {
     let planner = planners.find((planner) => planner.link == req.params.link);
     if (planner) {
-      console.log(planner);
       id = planner._id;
     }
   });
-  console.log(id);
   Planner.findByIdAndUpdate(id).then((planner) => {
     plannerUser = planner.users.find((user) => user.userId == req.body._id);
     if (plannerUser) {
@@ -56,8 +54,8 @@ async function updatePlanner(req, res) {
     }
     planner.users = planner.users.filter((user) => user.userId !== req.body._id);
     planner.users.push(plannerUser);
-    console.log(planner);
     planner.save();
+    res.status(200).send("Done");
   });
 }
 
@@ -88,7 +86,11 @@ async function joinPlanner(req, res) {
     }
   });
   Planner.findByIdAndUpdate(plannerId).then((planner) => {
-    planner.users.push({ username:req.body.username,userId: req.body._id, dateZone: [] });
+    planner.users.push({
+      username: req.body.username,
+      userId: req.body._id,
+      dateZone: [],
+    });
     planner.save();
   });
 }
