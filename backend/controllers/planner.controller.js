@@ -61,16 +61,17 @@ async function updatePlanner(req, res) {
   });
 }
 
-function joinPlanner(req, res) {
+async function joinPlanner(req, res) {
+  let plannerId = "";
   console.log(req.body);
   if (req.body == undefined) {
     res.send("This user does not exist");
     return;
   }
-  Planner.find().then((planners) => {
+  await Planner.find().then((planners) => {
     if (planners.find((planner) => planner.link == req.params.link)) {
       //the link is correspond to a valid planner
-      const plannerId = planners.find((planner) => planner.link == req.params.link)._id;
+      plannerId = planners.find((planner) => planner.link == req.params.link)._id;
       User.findById(req.body._id)
         .then((user) => {
           if (!user.planner.includes(plannerId)) {
@@ -85,6 +86,10 @@ function joinPlanner(req, res) {
     } else {
       res.send("This planner does not exist");
     }
+  });
+  Planner.findByIdAndUpdate(plannerId).then((planner) => {
+    planner.users.push({ userId: req.body._id, dateZone: [] });
+    planner.save();
   });
 }
 
