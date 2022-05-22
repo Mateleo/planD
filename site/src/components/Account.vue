@@ -69,7 +69,7 @@ store.fetchUserPlanners(store.getUserId);
         placeholder="R9M529B51PY2S93JGLY7"
       />
       <button
-        @click="store.plannerJoin({ _id: store.getUserId }, link)"
+        @click="store.plannerJoin({ _id: store.getUserId,username:store.getUsername }, link)"
         class="px-4 py-[6px] bg-sky-400 font-bold text-white hover:bg-sky-500 transition-colors ease-in-out duration-150 rounded-md"
       >
         ADD

@@ -92,7 +92,7 @@ export const useStore = defineStore("main", {
       await axios(options);
       console.log("create card");
     },
-    async plannerJoin(data: { _id: string }, plannerlink: string) {
+    async plannerJoin(data: { _id: string,username:string }, plannerlink: string) {
       console.log(data, plannerlink);
       const options: AxiosRequestConfig = {
         method: "PATCH",

@@ -88,7 +88,7 @@ async function joinPlanner(req, res) {
     }
   });
   Planner.findByIdAndUpdate(plannerId).then((planner) => {
-    planner.users.push({ userId: req.body._id, dateZone: [] });
+    planner.users.push({ username:req.body.username,userId: req.body._id, dateZone: [] });
     planner.save();
   });
 }
