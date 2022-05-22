@@ -24,6 +24,11 @@ store.fetchUserPlanners(store.getUserId)
           OPEN
         </button>
       </div>
+      <h2 class="font-bold text-xl text-black/80 mt-2">Join</h2>
+      <input type="text" class="p-2 px-4 text-sm rounded-md bg-black/10 focus:outline-sky-400 mr-5" placeholder="R9M529B51PY2S93JGLY7">
+    <button class="px-4 py-[6px] bg-sky-400 font-bold text-white hover:bg-sky-500 transition-colors ease-in-out duration-150 rounded-md">
+      ADD
+    </button>
     </div>
   </main>
 </template>

@@ -8,6 +8,7 @@ const UserPlanner = mongoose.Schema({
 const PlannerSchema = mongoose.Schema({
   name: {type:String, required:true},
   users:[{type:UserPlanner}],
+  link:{type:String}
 });
 
 module.exports = mongoose.model("Planner", PlannerSchema);

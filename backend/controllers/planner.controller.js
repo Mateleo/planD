@@ -4,12 +4,12 @@ var mongoose = require("mongoose");
 const User = require("../models/user.model.js");
 const { isAuthenticated } = require("../middlewares/auth.js");
 
-
 //create a simple planner and ad it to the creator
 function createPlanner(req, res) {
   const planner = new Planner({
     name: req.body.name,
     users: req.body.users,
+    link: req.body.link,
   });
 
   planner.save().catch((err) => {
@@ -24,11 +24,11 @@ function createPlanner(req, res) {
 
 //find all planers for a given user, and send them back
 function findAllPlanner(req, res) {
-  let AllPlaner = []
-  console.log(req.params._id)
-  User.findById(req.params._id).then(async(user) => {
+  let AllPlaner = [];
+  console.log(req.params._id);
+  User.findById(req.params._id).then(async (user) => {
     if (user && user.planner) {
-      for(let x=0;x<user.planner.length;x++){
+      for (let x = 0; x < user.planner.length; x++) {
         let response = await Planner.findById(user.planner[x]).exec();
         AllPlaner.push(response);
       }
@@ -38,29 +38,53 @@ function findAllPlanner(req, res) {
     }
   });
 }
- 
 
 function updatePlanner(req, res) {
-  User.findById(req.body._id).then(async(user) => {
+  User.findById(req.body._id).then(async (user) => {
     if (user.planner.includes(req.params._id)) {
-      Planner.findByIdAndUpdate(req.params._id).then(async(planner) => {
+      Planner.findByIdAndUpdate(req.params._id).then(async (planner) => {
         for (let index = 0; index < user.planner.length; index++) {
           const element = array[index];
           if (planner.users[index]._id == req.body._id) {
-            planner.users[index].datezone = req.body.datezone;          
+            planner.users[index].datezone = req.body.datezone;
           }
         }
         planner.save();
-      })  
+      });
     } else {
-        console.log("duh");
+      console.log("duh");
     }
-  })
-    
+  });
+}
+
+function joinPlanner(req, res) {
+  console.log(req.body)
+  if(req.body==undefined){
+    res.send("This user does not exist")
+    return
+  }
+  Planner.find().then((planners) => {
+    if (planners.find((planner) => planner.link == req.params.link)) {
+      //the link is correspond to a valid planner
+      const plannerId = planners.find(planner => planner.link==req.params.link)._id
+      User.findById(req.body._id).then((user) => {
+        if (!user.planner.includes(plannerId)) {
+          user.planner.push(plannerId);
+          user.save()
+          res.send("You have joined this planner")
+        }else{
+          res.send("You have this planner !")
+        }
+      });
+    }else{
+      res.send("This planner does not exist")
+    }
+  });
 }
 
 module.exports = {
   createPlanner,
   findAllPlanner,
   updatePlanner,
+  joinPlanner,
 };

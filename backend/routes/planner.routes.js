@@ -15,9 +15,10 @@ module.exports = function (app) {
   // );
 
   //new routes for S2
-  app.post("/api/planner", auth.isAuthenticated, urlencodedParser, planner.createPlanner);
+  app.put("/api/planner", auth.isAuthenticated, urlencodedParser, planner.createPlanner);
   app.get("/api/planner/:_id", auth.isAuthenticated, planner.findAllPlanner);
   app.patch("/api/planner/:_id", auth.isAuthenticated, planner.updatePlanner);
+  app.get("/api/planner/join/:link",auth.isAuthenticated, planner.joinPlanner)
 
   // app.get("/api/users/mycollection", auth.isAuthenticated, user.getMyCollection)
   // app.get("/api/users/myboosters", auth.isAuthenticated, user.getMyBoosters)
