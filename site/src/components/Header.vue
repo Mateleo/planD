@@ -18,9 +18,10 @@
       <nav
         class="self-center flex flex-wrap justify-center md:justify-end text-sm sm:text-xl w-full grow"
       >
-        <router-link to="/create" class="md:mr-2 mr-1 link-underline">CREATE</router-link>
-        <router-link to="/contact" class="md:mx-2 mx-1 link-underline"
-          >CONTACT</router-link
+        <router-link to="/create" class="md:mr-2 mr-1 link-underline">
+          CREATE</router-link>
+        <router-link to="/support" class="md:mx-2 mx-1 link-underline"
+          >SUPPORT</router-link
         >
         <router-link to="/mypanel" class="md:ml-2 ml-1 link-underline"
           >ACCOUNT</router-link

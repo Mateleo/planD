@@ -3,6 +3,7 @@ import Home from "../components/Home.vue";
 import Login from "../components/Login.vue";
 import Account from "../components/Account.vue";
 import Create from "../components/Create.vue";
+import Support from "../components/Support.vue";
 import { useStore } from "@/stores/store";
 import { useToast } from "vue-toastification";
 import axios from "axios";
@@ -45,6 +46,11 @@ const routes = [
       }
       return true;
     },
+  },
+  {
+    path: "/support",
+    name: "Support",
+    component: Support,
   },
 ];
 const router = createRouter({

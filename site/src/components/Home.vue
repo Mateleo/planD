@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useStore } from "@/stores/store";
-import { storeToRefs } from "pinia";
 import Header from "./Header.vue";
 const store = useStore();
 
