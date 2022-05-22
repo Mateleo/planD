@@ -10,6 +10,9 @@ function copy(text:string) {
   navigator.clipboard.writeText(text);
 }
 
+function route(plannerlink:string){
+  return "/planner/"+plannerlink
+}
 
 store.fetchUserPlanners(store.getUserId);
 </script>
@@ -28,7 +31,7 @@ store.fetchUserPlanners(store.getUserId);
       >
         <h3 class="text-2xl text-center m-auto ml-0">{{ planner.name }}</h3>
         <router-link
-        to="/planner"
+        :to="route(planner.link)"
           class="ml-auto bg-yellow-500 rounded-2xl p-2 px-4 font-bold text-lg shadow-lg group hover:outline hover:outline-4 hover:outline-red-200 hover:bg-gradient-to-br hover: from-fuchsia-600 hover:to-orange-600 hover:text-white transition-all ease-in duration-75"
         >
           OPEN

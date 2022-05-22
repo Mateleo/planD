@@ -35,7 +35,7 @@ const routes = [
     },
   },
   {
-    path: "/planner",
+    path: "/planner/:plannerlink",
     name: "Planner",
     component: Planner,
     beforeEnter: async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
