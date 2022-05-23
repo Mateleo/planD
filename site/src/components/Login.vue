@@ -20,7 +20,7 @@ function auth(connection: string) {
       <h2 class="text-center mb-4 font-bold">Login or Register</h2>
       <button
         @click="auth('google')"
-        class="px-2 py-4 shadow-black border-2 border-blue-500 rounded-sm hover:bg-blue-400 shadow-lg group hover:outline hover:outline-4 hover:outline-red-200 hover:bg-gradient-to-br hover: from-fuchsia-600 hover:to-orange-600 hover:text-white transition-all ease-in duration-75"
+        class="px-2 py-4 shadow-black border-2 border-blue-500 rounded-sm hover:outline-blue-300 hover:bg-blue-400 shadow-lg group hover:outline hover:outline-4 transition-all ease-in duration-75"
       >
         Sign in with Google
       </button>
