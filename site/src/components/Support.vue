@@ -23,7 +23,7 @@ import Header from "./Header.vue";
     <div class="flex flex-col">
       <h2 class="text-center">Marc Bernard</h2>
       <div class="m-auto">
-        <img class="max-w-[300px]" src="../../Pics/Marc.png" alt="" />
+        <img class="max-w-[300px]" src="../../Pics/Marc.jpeg" alt="" />
       </div>
       <p>marc.bernard@efrei.net</p>
     </div>
