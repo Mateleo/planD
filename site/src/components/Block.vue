@@ -9,8 +9,8 @@ const props = withDefaults(defineProps<{ id?: number; dateRange?: any }>(), {
   <main
     :class="
       props.dateRange?.includes(props.id) ? 'bg-blue-700' : '',
-      props.id == props.dateRange[0] ? 'rounded-l-full' : '',
-      props.id == props.dateRange[props.dateRange.length-1] ? 'rounded-r-full' : ''
+      props.id == props.dateRange[0] ? 'rounded-l-lg md:rounded-l-full' : '',
+      props.id == props.dateRange[props.dateRange.length-1] ? 'rounded-r-lg md:rounded-r-full' : ''
     "
     class="w-full h-full"
   ></main>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useStore } from "@/stores/store";
-import { ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import Header from "./Header.vue";
 import Block from "./Block.vue";
 import { useRouter, useRoute } from "vue-router";
@@ -46,6 +46,24 @@ function dateZoneToRange(dateZone: any) {
     local.push(x);
   }
   return local;
+}
+
+let width = ref(window.innerWidth);
+
+function onchange() {
+  width.value = window.innerWidth;
+}
+
+onMounted(() => window.addEventListener("resize", onchange));
+onUnmounted(() => window.removeEventListener("resize", onchange));
+let test = computed(() => (width.value <= 730 ? true : false));
+
+function resposive(x:number) {
+  if (test.value) {
+    return x == 1 || x == 31 ? x : undefined;
+  }else{
+    return x
+  }
 }
 
 function getRandomColor() {
@@ -112,6 +130,16 @@ store.fetchUserPlanners(store.getUserId);
       </div>
     </div>
     <div class="bg-white rounded-lg p-1 md:p-4 grow w-full md:w-fit md:mt-0 mb-3 order-3">
+      <div class="flex">
+        <p
+          class="mb-3 mr-1 md:mr-5 text-sm md:text-2xl font-bold md:w-[130px] w-[90px]"
+        ></p>
+        <div class="grid gridcols grow">
+          <div v-for="i in 31">
+            <div>{{ resposive(i) }}</div>
+          </div>
+        </div>
+      </div>
       <div
         class="mb-5"
         v-for="user in store.userData.planner.find(
@@ -119,7 +147,9 @@ store.fetchUserPlanners(store.getUserId);
         )?.users"
       >
         <div class="flex">
-          <p class="mb-3  mr-1 md:mr-5 text-sm md:text-2xl font-bold">
+          <p
+            class="mb-3 mr-1 md:mr-5 text-sm md:text-2xl font-bold md:w-[130px] w-[90px]"
+          >
             {{ user.username }}
           </p>
           <div class="grid gridcols grow">
